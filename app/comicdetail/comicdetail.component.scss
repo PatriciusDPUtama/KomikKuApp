@@ -1,0 +1,19 @@
+.gridView{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.page{
+    --background:rgb(70, 70, 70);
+}
+
+.comment{
+    --background:rgb(70, 70, 77=0);
+}
+
+ion-fab-button {
+    --background: #8a8a8a;
+    --background-hover: #6b6b6b;
+    --background-activated: #222222;
+}

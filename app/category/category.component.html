@@ -1,0 +1,14 @@
+<ion-chip *ngFor="let category of categories">
+  <ion-label (click)="getComicsPerCategories(category.id)">{{category.name}}</ion-label>
+</ion-chip>
+
+<div class="gridView">
+  <ion-card *ngFor="let comic of comics;" routerLink='/detail/{{comic.id}}'>
+    <ion-img src="../assets/img/{{comic.id}}.jpg"></ion-img>
+    <ion-card-header>
+      <ion-card-title>{{comic.title}}</ion-card-title>
+      <ion-card-subtitle>{{comic.author}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>{{comic.rating}} <ion-icon name="star"></ion-icon></ion-card-content>
+  </ion-card>
+</div>

@@ -1,0 +1,66 @@
+<ion-app *ngIf="!user_id">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Login</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-card>
+      <ion-title>
+        <h1>KomikKu</h1>
+      </ion-title>
+      <ion-item>
+        <ion-input name="email" placeholder="Username" [(ngModel)]='login_user'>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input name="password" type="password" placeholder="Password" [(ngModel)]='login_passwd'>
+        </ion-input>
+      </ion-item>
+      <ion-button color="medium" type="submit" expand="block" (click)='login()'>Login</ion-button>
+      <ion-chip *ngIf="login_error">{{login_error}}</ion-chip>
+    </ion-card>
+  </ion-content>
+</ion-app>
+
+<ion-app *ngIf="user_id">
+  <ion-menu type="overlay" content-id="content">
+    <ion-content>
+      <ion-menu-toggle>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title routerLink="">
+              <h1>KomikKu</h1>
+            </ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-list>
+          <ion-item><ion-icon name="book" slot="start"></ion-icon>
+            <ion-label routerLink="/comics">Comic List</ion-label>
+          </ion-item>
+          <ion-item><ion-icon name="ellipsis-vertical" slot="start"></ion-icon>
+            <ion-label routerLink="/category">Category</ion-label>
+          </ion-item>
+          <ion-item><ion-icon name="bookmarks" slot="start"></ion-icon>
+            <ion-label routerLink="/favorite">Favorite</ion-label>
+          </ion-item>
+          <ion-item><ion-icon name="log-out" slot="start"></ion-icon>
+            <ion-label (click)="logout()">Logout</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-menu-toggle>
+    </ion-content>
+  </ion-menu>
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button autoHide="false"></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Hello {{user_id}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <router-outlet id="content"> </router-outlet>
+  </ion-content>
+</ion-app>

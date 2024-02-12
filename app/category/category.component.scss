@@ -1,0 +1,19 @@
+.gridView{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+ion-card{
+    width: 255px;
+}
+
+
+ion-chip{
+    --background:rgb(75, 75, 75);
+}
+
+ion-chip:hover{
+    --background:rgb(180, 180, 180);
+    --color:black;
+}

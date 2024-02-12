@@ -1,0 +1,69 @@
+<div class="gridView">
+  <ion-card>
+    <ion-img src="../assets/img/{{comics[0].id}}.jpg"></ion-img>
+    <ion-card-header>
+      <ion-card-title>{{comics[0].title}}</ion-card-title>
+      <ion-fab horizontal="end" vertical="top">
+        <ion-fab-button>
+          <ion-icon name="star"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="start">
+          <ion-fab-button (click)="addingToFavorite(comics[0].id,userid)">
+            <ion-icon name="checkmark-circle"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button (click)="deletingFavorite(comics[0].id,userid)">
+            <ion-icon name="close-circle"></ion-icon>
+          </ion-fab-button>
+        </ion-fab-list>
+      </ion-fab>
+      <ion-card-subtitle>{{comics[0].author}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-chip [disabled]="true" *ngFor="let comic of comics">{{comic.name + " "}}</ion-chip><br><br>
+      <div class="ion-text-justify">
+        {{comics[0].synopsis}}
+      </div>
+      <ion-list>
+        <ion-item class="page" lines="full" *ngFor="let page of pages" routerLink='/page/{{page.id}}'>
+          <ion-label>Chapter {{page.chapter}} : {{page.page_title}}</ion-label>
+        </ion-item>
+      </ion-list>
+      <ion-card class="comment">
+        <ion-card-header>
+          <ion-card-title>Reviews</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list *ngFor="let review of reviews">
+            <ion-item>
+              <ion-label><ion-icon name="person"></ion-icon> {{review.comic_users_username}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Rating {{review.rating}} <ion-icon name="star"></ion-icon></ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-textarea placeholder="{{review.comment}}" [autoGrow]="true" [readonly]="true"></ion-textarea>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+        <ion-card-content>
+          <ion-list>
+            <ion-list-header>
+              <ion-label><h1>Add New Comment</h1></ion-label>
+            </ion-list-header>
+            <ion-item>
+              <ion-label>Rating</ion-label>
+              <ion-range [ticks]="true" [snaps]="true" [min]="0" [max]="5"
+              [(ngModel)]='rating' color="medium"></ion-range>
+            </ion-item>
+            <ion-item>
+              <ion-textarea placeholder="Type your comment here" [autoGrow]="true" [(ngModel)]='addComment'></ion-textarea>
+            </ion-item>
+            <ion-item>
+              <ion-button color="medium" (click)="addingReviews(comics[0].id,userid,addComment,rating)">Add Comment</ion-button>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </ion-card-content>
+  </ion-card>
+</div>
